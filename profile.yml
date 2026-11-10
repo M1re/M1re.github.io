@@ -55,7 +55,7 @@ skills:
     core: [MS SQL Server, MongoDB, Azure Cosmos DB, Apache Solr, Azure Service Bus, RabbitMQ]
   - group: Cloud & DevOps
     items: [Azure, Azure Functions, Azure Key Vault, Azure Bicep, AWS, Amazon EKS, Amazon ECR, GCP, Docker, Kubernetes, Helm, Docker Swarm, Git, GitHub Actions, Azure DevOps]
-    core: [Azure, AWS, GCP, Docker, Docker Swarm, Kubernetes, Helm, Azure Bicep, Git, GitHub Actions, Azure DevOps]
+    core: [Azure, AWS, GCP, Docker, Docker Swarm, Kubernetes, Helm, Git, GitHub Actions]
   - group: Observability
     items: [Datadog, Grafana, Kibana]
     core: [Datadog, Grafana, Kibana]
