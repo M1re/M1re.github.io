@@ -23,7 +23,7 @@ contacts:
 
 # Short status lines for the site's STATUS panel.
 status:
-  Status: Building backend systems on .NET with a React front
+  Status: Building backend systems on .NET
   Training: .NET, React, DevOps
   Notes: Field notes in the Engineering Vault
 
