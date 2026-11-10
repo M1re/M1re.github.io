@@ -46,6 +46,15 @@ jobs:
           [ "$pages" -le 2 ] || { echo "::error::resume is longer than 2 pages"; fail=1; }
           exit $fail
 
+      - name: Ask the profile README to resync
+        if: github.event_name == 'push'
+        env:
+          TOKEN: ${{ secrets.README_SYNC_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then echo "README_SYNC_TOKEN not set: README syncs on its nightly run"; exit 0; fi
+          curl -fsS -X POST -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/M1re/M1re/dispatches -d '{"event_type":"profile-updated"}'
+
       - name: Commit PDF
         run: |
           git config user.name "github-actions[bot]"
