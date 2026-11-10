@@ -10,7 +10,7 @@
 
 name: Vladyslav Konokh
 title: .NET Software Engineer
-location: Kyiv, Ukraine
+location: Wrocław, Poland
 open_to_work: true
 
 contacts:
@@ -24,80 +24,101 @@ contacts:
 # Short status lines for the site's STATUS panel.
 status:
   Status: Building backend systems on .NET
-  Training: .NET, React, DevOps
+  Training: .NET, Kubernetes, DevOps
   Notes: Field notes in the Engineering Vault
 
 # Resume summary. 3-4 sentences, keyword-rich, no fluff.
 summary: >-
-  .NET Software Engineer with 5+ years of commercial experience designing and
-  building enterprise microservices in C#, ASP.NET Core and React. Delivered
-  production systems in identity and access management, digital workplace and
-  laboratory automation domains, owning features end to end: API design,
-  data modelling in MS SQL and MongoDB, integrations with Azure, AWS, Okta and
-  Keycloak, CI/CD and production support. Focused on clean architecture,
-  performance and reliability, currently deepening DevOps expertise.
+  .NET Software Engineer with 5 years of commercial experience building backend
+  systems and microservices in C# and ASP.NET Core. Experienced with relational
+  and NoSQL databases, cloud infrastructure on Azure and AWS, and CI/CD with
+  Docker and Kubernetes. Comfortable owning a component end to end, working
+  directly with stakeholders and helping teammates get up to speed.
 
 # Skills: each group gets its own color on the site and its own
 # line in the resume. Use the spelling recruiters search for.
 skills:
   - group: Languages
-    items: [C#, TypeScript, JavaScript, SQL, PowerShell]
-  - group: Backend
-    items: [.NET, ASP.NET Core, ASP.NET Web API, REST APIs, Microservices, CQRS, MediatR]
+    items: [C#, Python, SQL, PowerShell]
+  - group: Backend & Identity
+    items: [.NET, ASP.NET Core, ASP.NET Web API, Entity Framework Core, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
   - group: Frontend
-    items: [React, HTML, CSS]
+    items: [React, Angular]
   - group: Data & Messaging
-    items: [MS SQL, MongoDB, Redis, Kafka, RabbitMQ]
+    items: [MS SQL, MongoDB, Azure Cosmos DB, Apache Solr, Azure Service Bus, RabbitMQ]
   - group: Cloud & DevOps
-    items: [Azure, AWS, GCP, Docker, GitHub Actions, GitLab CI/CD, Azure Bicep]
-  - group: Security & Testing
-    items: [Okta, Keycloak, OAuth 2.0, Unit Testing, Integration Testing]
+    items: [Azure, Azure Functions, Azure Key Vault, Azure Bicep, AWS, Amazon EKS, Amazon ECR, GCP, Docker, Kubernetes, Helm, Docker Swarm, GitHub Actions, Azure DevOps]
+  - group: Observability
+    items: [Datadog, Grafana, Kibana]
+  - group: ML & Vision
+    items: [ML.NET, ONNX, VoTT, ComfyUI]
 
+# Dates are approximate (no bench between projects); keep LinkedIn in sync.
 experience:
   - role: .NET Software Engineer
     company: DataArt
-    location: Remote, Kyiv
-    start: 2025-01
+    location: Remote
+    start: 2026-01
     end: present
     context: >-
-      Secure, scalable platforms for biological sample storage, logistics,
-      genomic services, lab robotics and AI-driven analysis.
+      Travel platform: search and data-indexing services on Apache Solr and MS SQL, hosted in Azure.
     highlights:
-      - Architect and build microservice applications in C# and .NET Core.
-      - "TODO: paste the rest of the DataArt responsibilities from LinkedIn"
-      - "TODO: add 1-2 results with numbers (latency, throughput, users, cost)"
+      - Completed an in-house .NET indexing framework and moved index-build logic from 5 legacy projects into it.
+      - Migrated all search indexes from Apache Solr 6 to Solr 9.
+      - Made indexing 2.5x faster on average by optimizing API data loading and SQL queries.
+      - Contributed to index-rebuild jobs and per-index Datadog dashboards.
+      - Validated migrated indexes against production with automated AI-driven parity reports.
+      - Go-to engineer for the indexing platform, responsible for onboarding new team members.
+
+  - role: .NET Software Engineer
+    company: DataArt
+    location: Remote
+    start: 2024-11
+    end: 2026-01
+    context: >-
+      Automated biorepository: robotic sample handling, camera-based label recognition and a lab CMS.
+    highlights:
+      - Fixed memory leaks in ML.NET services, cutting infrastructure costs by ~$700/month per environment.
+      - Trained object-detection models to locate client-specific QR codes and sample labels on tube images.
+      - Automated model training from image sets labeled in VoTT.
+      - Built a ComfyUI workflow that generates synthetic training images, replacing manual photo shoots.
+      - Owned the migration of a project's container infrastructure from Docker Swarm to Kubernetes on AWS, including Helm-based deployment packaging.
+      - Built a monitoring service that brings Grafana and Kibana data into the lab CMS.
+      - Calibrated camera and robotic-arm parameters, including focus, sharpness and grayscale conversion, to improve label recognition accuracy.
+      - Developed Angular front-end features for the lab CMS.
+      - Wrote code in .NET, Python and C++ together with CMS, robotics and vision teams.
 
   - role: .NET Software Engineer
     company: GlobalLogic
-    location: Remote, Kyiv
-    start: 2023-08
-    end: 2025-01
+    location: Remote
+    start: 2023-09
+    end: 2024-11
     context: >-
-      Digital workplace platform for internal communication, collaboration
-      and knowledge sharing.
+      Digital workplace platform combining project management and social collaboration, built on Azure.
     highlights:
-      - Architected and built C#/.NET Core microservices and RESTful APIs with authentication and authorization.
-      - Designed NoSQL data models and established communication protocols between microservices.
-      - Applied performance optimization techniques and profiling tools to improve system efficiency.
-      - Integrated third-party services, SDKs and APIs into the platform.
-      - Streamlined deployments with DevOps through GitHub CI/CD pipelines and Azure Bicep.
-      - "TODO: add 1-2 results with numbers"
+      - Led the service migrating user data from platform v1 to v2, including planning, task distribution and stakeholder demos.
+      - Extended core microservices built with CQRS, MediatR, Azure Cosmos DB, Azure Service Bus and Azure Functions.
+      - Covered migration-critical services with xUnit unit tests to keep releases stable.
+      - Helped build the central monitoring service that sends logs and traces to Datadog.
+      - Drove technical decisions through evidence-based design reviews.
+      - Delivered infrastructure as code with Azure Bicep and CI/CD with GitHub Actions.
 
-  - role: Junior .NET Software Engineer
+  - role: .NET Software Engineer
     company: GlobalLogic
-    location: Remote, Kyiv
-    start: 2021-06
-    end: 2023-05
+    location: Remote
+    start: 2021-12
+    end: 2023-09
     context: >-
-      Enterprise Identity and Access Management (IAM) platform automating user
-      provisioning, deprovisioning, access control and security analytics.
+      Security platform unifying RBAC and access-control tools behind one simplified configuration.
     highlights:
-      - Designed and developed microservices with C#/.NET, TypeScript and React.
-      - Built scalable RESTful APIs with authentication and authorization; implemented inter-service communication.
-      - Designed relational (MS SQL) and NoSQL (MongoDB) databases based on project needs.
-      - Integrated AWS, Azure, Okta and Keycloak into the IAM workflows.
-      - Implemented CI/CD pipelines with GitLab CI/CD, Docker and GCP together with DevOps.
-      - Developed responsive React user interfaces and wrote unit and integration tests.
+      - Designed the platform's data model from scratch.
+      - Proposed and carried out the move from MS SQL to MongoDB to support a rapidly evolving schema.
+      - Built a monitoring and risk-management service that detects suspicious activity with configurable rules.
+      - Reduced a service's memory usage from ~5 GB to ~1.3 GB (~74%).
+      - Owned CI/CD pipelines and deployments for the team's microservices.
+      - Integrated Keycloak and Okta for authentication and authorization.
+      - Developed React front-end features for the platform.
+      - Mentored two interns, guiding them through code reviews and day-to-day tasks.
 
 education:
   - degree: Bachelor of Science in Computer Software Engineering
@@ -123,4 +144,4 @@ languages:
   - name: German
     level: A2
   - name: Polish
-    level: A2
+    level: A1

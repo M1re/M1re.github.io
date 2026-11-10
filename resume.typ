@@ -56,7 +56,8 @@
     if ok(c.at("email", default: none)) { items.push(link("mailto:" + c.email, c.email)) }
     for key in ("linkedin", "telegram", "github", "site") {
       let u = c.at(key, default: none)
-      if ok(u) { items.push(link(u, strip-url(u))) }
+      // box keeps each contact on one line instead of splitting it at "/"
+      if ok(u) { items.push(box(link(u, strip-url(u)))) }
     }
     text(size: 9pt, weight: "semibold", items.join([ #sym.bullet ]))
   }
@@ -64,12 +65,12 @@
 
 // ---------- summary ----------
 #if ok(p.at("summary", default: none)) {
-  section[Professional Summary]
+  section[Summary]
   p.summary
 }
 
 // ---------- experience ----------
-#section[Professional Experience]
+#section[Experience]
 #for (i, e) in p.experience.enumerate() {
   if i > 0 { v(0.55em) }
   row(text(weight: "semibold", e.role), [#ym(e.start) - #ym(e.end)])
@@ -87,25 +88,30 @@
 }
 
 // ---------- education ----------
+// Kept in one block so the heading never stays alone at a page bottom.
 #if p.at("education", default: ()).len() > 0 {
-  section[Education]
-  for e in p.education {
-    row(text(weight: "semibold", e.degree), [#ym(e.start) - #ym(e.end)])
-    v(-0.45em)
-    row(e.school, e.at("location", default: ""))
-  }
+  block(breakable: false, {
+    section[Education]
+    for e in p.education {
+      row(text(weight: "semibold", e.degree), [#ym(e.start) - #ym(e.end)])
+      v(-0.45em)
+      row(e.school, e.at("location", default: ""))
+    }
+  })
 }
 
 // ---------- certifications ----------
 #let certs = p.at("certifications", default: ()).filter(c => ok(c.name))
 #if certs.len() > 0 {
-  section[Certifications]
-  for c in certs {
-    row(
-      [*#c.name* -- #c.issuer#if ok(c.at("url", default: none)) [ (#link(c.url)[verify])]],
-      ym(c.date),
-    )
-  }
+  block(breakable: false, {
+    section[Certifications]
+    for c in certs {
+      row(
+        [*#c.name* -- #c.issuer#if ok(c.at("url", default: none)) [ (#link(c.url)[verify])]],
+        ym(c.date),
+      )
+    }
+  })
 }
 
 // ---------- skills ----------

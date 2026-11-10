@@ -37,7 +37,7 @@ jobs:
           fail=0
           check() { grep -qF -- "$1" resume.txt || { echo "::error::missing in PDF text: $1"; fail=1; }; }
           check "$(yq -r .name profile.yml)"
-          for h in "Professional Summary" "Professional Experience" "Education" "Skills"; do check "$h"; done
+          for h in "Summary" "Experience" "Education" "Skills"; do check "$h"; done
           while IFS= read -r skill; do check "$skill"; done < <(yq -r '.skills[].items[] | select(test("TODO") | not)' profile.yml)
           if grep -q "TODO" resume.txt; then echo "::error::TODO leaked into PDF"; fail=1; fi
           if grep -qP '[\x{FB00}-\x{FB06}]' resume.txt; then echo "::error::ligature glyphs found"; fail=1; fi
