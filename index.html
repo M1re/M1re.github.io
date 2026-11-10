@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vladyslav Konokh — .NET Software Engineer</title>
-<meta name="description" content="Vladyslav Konokh — .NET Software Engineer. Backend on .NET, front on React.">
+<meta name="description" content="Vladyslav Konokh — .NET Software Engineer. Backend systems on .NET, Azure and AWS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -143,7 +143,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 <div class="wrap">
 
   <header class="hud">
-    <span>SECTOR 04 // <b>KYIV-UA</b> <span class="opt">// 50.4501N 30.5234E</span></span>
+    <span>SECTOR 04 // <b>WROCLAW-PL</b> <span class="opt">// 51.1079N 17.0385E</span></span>
     <span>LOCAL <b id="clock">--:--:--</b></span>
   </header>
 
@@ -285,9 +285,10 @@ async function boot() {
   }
 }
 
-/* ---------- clock (Kyiv) ---------- */
-const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-const tick = () => $('#clock').textContent = fmt.format(new Date()) + ' EET';
+/* ---------- clock (Wroclaw) ---------- */
+// timeZoneName gives CET in winter and CEST in summer.
+const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' });
+const tick = () => $('#clock').textContent = fmt.format(new Date()).replace('GMT+1', 'CET').replace('GMT+2', 'CEST');
 tick(); setInterval(tick, 1000);
 $('#yr').textContent = new Date().getFullYear();
 
