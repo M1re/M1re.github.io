@@ -109,7 +109,7 @@ experience:
     start: 2021-12
     end: 2023-09
     context: >-
-      Security platform on .NET 6 unifying RBAC and access-control tools behind one simplified configuration.
+      Security platform on .NET 6 unifying RBAC and access-control tools for AWS and Azure behind one simplified configuration.
     highlights:
       - Designed the platform's data model from scratch.
       - Proposed and carried out the move from MS SQL to MongoDB to support a rapidly evolving schema.

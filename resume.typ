@@ -78,7 +78,7 @@
   row(text(weight: "semibold", e.company), text(weight: "semibold", e.at("location", default: "")))
   if ok(e.at("context", default: none)) {
     v(-0.3em)
-    text(style: "italic", size: 9pt, e.context)
+    block({ set par(justify: false); text(style: "italic", size: 9pt, e.context) })
   }
   let hl = e.at("highlights", default: ()).filter(ok)
   if hl.len() > 0 {
