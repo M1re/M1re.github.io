@@ -29,8 +29,8 @@ status:
 
 # Resume summary. 3-4 sentences, keyword-rich, no fluff.
 summary: >-
-  .NET Software Engineer with 5 years of commercial experience building backend
-  systems and microservices in C# and ASP.NET Core. Experienced with relational
+  .NET Software Engineer with 5 years of commercial experience as a backend C#
+  developer, building systems and microservices with ASP.NET Core. Experienced with relational
   and NoSQL databases, cloud infrastructure on Azure and AWS, and CI/CD with
   Docker and Kubernetes. Comfortable owning a component end to end, working
   directly with stakeholders and helping teammates get up to speed.
@@ -39,15 +39,15 @@ summary: >-
 # line in the resume. Use the spelling recruiters search for.
 skills:
   - group: Languages
-    items: [C#, Python, SQL, PowerShell]
+    items: [C#, Python, SQL, T-SQL, PowerShell]
   - group: Backend & Identity
-    items: [.NET, ASP.NET Core, ASP.NET Web API, Entity Framework Core, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
+    items: [.NET 10, .NET 8, .NET 6, ASP.NET Core, ASP.NET Web API, Entity Framework Core, LINQ, async/await, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
   - group: Frontend
     items: [React, Angular]
   - group: Data & Messaging
-    items: [MS SQL, MongoDB, Azure Cosmos DB, Apache Solr, Azure Service Bus, RabbitMQ]
+    items: [MS SQL Server, MongoDB, Azure Cosmos DB, Apache Solr, Azure Service Bus, RabbitMQ]
   - group: Cloud & DevOps
-    items: [Azure, Azure Functions, Azure Key Vault, Azure Bicep, AWS, Amazon EKS, Amazon ECR, GCP, Docker, Kubernetes, Helm, Docker Swarm, GitHub Actions, Azure DevOps]
+    items: [Azure, Azure Functions, Azure Key Vault, Azure Bicep, AWS, Amazon EKS, Amazon ECR, GCP, Docker, Kubernetes, Helm, Docker Swarm, Git, GitHub Actions, Azure DevOps]
   - group: Observability
     items: [Datadog, Grafana, Kibana]
   - group: ML & Vision
@@ -61,7 +61,7 @@ experience:
     start: 2026-01
     end: present
     context: >-
-      Travel platform: search and data-indexing services on Apache Solr and MS SQL, hosted in Azure.
+      Travel platform on .NET 10: search and data-indexing services on Apache Solr and MS SQL Server, hosted in Azure.
     highlights:
       - Completed an in-house .NET indexing framework and moved index-build logic from 5 legacy projects into it.
       - Migrated all search indexes from Apache Solr 6 to Solr 9.
@@ -76,7 +76,7 @@ experience:
     start: 2024-11
     end: 2026-01
     context: >-
-      Automated biorepository: robotic sample handling, camera-based label recognition and a lab CMS.
+      Automated biorepository on .NET 8: robotic sample handling, camera-based label recognition and a lab CMS.
     highlights:
       - Fixed memory leaks in ML.NET services, cutting infrastructure costs by ~$700/month per environment.
       - Trained object-detection models to locate client-specific QR codes and sample labels on tube images.
@@ -94,7 +94,7 @@ experience:
     start: 2023-09
     end: 2024-11
     context: >-
-      Digital workplace platform combining project management and social collaboration, built on Azure.
+      Digital workplace platform on .NET 8 combining project management and social collaboration, built on Azure.
     highlights:
       - Led the service migrating user data from platform v1 to v2, including planning, task distribution and stakeholder demos.
       - Extended core microservices built with CQRS, MediatR, Azure Cosmos DB, Azure Service Bus and Azure Functions.
@@ -109,7 +109,7 @@ experience:
     start: 2021-12
     end: 2023-09
     context: >-
-      Security platform unifying RBAC and access-control tools behind one simplified configuration.
+      Security platform on .NET 6 unifying RBAC and access-control tools behind one simplified configuration.
     highlights:
       - Designed the platform's data model from scratch.
       - Proposed and carried out the move from MS SQL to MongoDB to support a rapidly evolving schema.
