@@ -8,11 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 <style>
 :root{
   --bg:#0A0A0B; --panel:#0E0E10; --line:#2A2A2F; --grid:#17171A;
   --text:#E8E8E2; --muted:#7C7C78;
-  --lime:#C8FF00; --pink:#FF2E88; --cyan:#00E5FF; --orange:#FF5A1F;
+  --lime:#C8FF00; --pink:#FF2E88; --cyan:#00E5FF; --orange:#FF5A1F; --yellow:#FFD400;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -42,6 +43,7 @@ a{color:inherit;text-decoration:none}
 /* bento grid */
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
 .p{background:var(--panel);border:1px solid var(--line);position:relative;min-width:0}
+.p[hidden]{display:none}
 .p-h{display:flex;justify-content:space-between;align-items:center;gap:12px;
   padding:9px 16px;border-bottom:1px solid var(--line);
   font-size:11px;letter-spacing:.25em;color:var(--muted);text-transform:uppercase}
@@ -52,12 +54,10 @@ a{color:inherit;text-decoration:none}
   border-right:2px solid var(--lime);border-bottom:2px solid var(--lime)}
 
 .id{grid-column:span 7;grid-row:span 2;display:flex;flex-direction:column}
-.about{grid-column:span 5}
-.loadout{grid-column:span 5}
+.about,.loadout,.log{grid-column:span 5}
 .contracts{grid-column:span 7}
-.log{grid-column:span 5}
-.record{grid-column:span 12}
-.telemetry{grid-column:span 12}
+.record,.telemetry{grid-column:span 12}
+.row3{grid-column:span 12;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 
 /* identity */
 .id .p-b{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:28px 24px}
@@ -73,7 +73,7 @@ a{color:inherit;text-decoration:none}
 .glitch::after{color:var(--cyan);animation:g2 3.2s steps(1) infinite}
 @keyframes g1{0%,86%,100%{opacity:0;transform:none}87%{opacity:.9;transform:translate(-7px,2px)}90%{opacity:.9;transform:translate(5px,-3px)}93%{opacity:.9;transform:translate(-3px,0)}96%{opacity:0}}
 @keyframes g2{0%,86%,100%{opacity:0;transform:none}88%{opacity:.9;transform:translate(6px,-2px)}91%{opacity:.9;transform:translate(-5px,3px)}94%{opacity:.9;transform:translate(4px,1px)}97%{opacity:0}}
-.name{font-size:clamp(18px,2.2vw,26px);font-weight:700;letter-spacing:.06em;margin-top:14px}
+.name{font-size:clamp(18px,2.2vw,26px);font-weight:700;letter-spacing:.06em;margin-top:14px;text-transform:uppercase}
 .role{color:var(--lime);letter-spacing:.2em;font-size:13px;text-transform:uppercase;margin-top:4px}
 .role span{color:var(--muted)}
 .ctas{display:flex;flex-wrap:wrap;gap:10px}
@@ -85,17 +85,40 @@ a{color:inherit;text-decoration:none}
 .btn.primary{background:var(--lime);color:var(--bg);border-color:var(--lime)}
 .btn.primary i{color:var(--bg)}
 .btn.primary:hover{background:transparent;color:var(--lime)}
+.btn.primary:hover i{color:var(--lime)}
 
 /* about key/value */
 .kv{display:grid;grid-template-columns:auto 1fr;gap:10px 16px}
 .kv dt{color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding-top:2px}
-.kv dd{color:var(--text)}
 
 /* loadout */
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--c);color:var(--c);padding:3px 10px;font-size:12px;letter-spacing:.06em}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:16px;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
-.legend span::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;background:var(--c)}
+.sk-g{margin-bottom:12px}
+.sk-g:last-child{margin-bottom:0}
+.sk-l{font-size:10px;letter-spacing:.25em;color:var(--c);text-transform:uppercase;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--c);color:var(--c);padding:2px 9px;font-size:12px;letter-spacing:.04em}
+
+/* service record */
+.tl{list-style:none;display:grid;gap:22px}
+.tl>li{display:grid;grid-template-columns:200px 1fr;gap:20px;padding-left:16px;border-left:2px solid var(--line)}
+.tl>li:first-child{border-left-color:var(--lime)}
+.tl .when{color:var(--muted);font-size:12px;letter-spacing:.1em}
+.tl .when b{display:block;color:var(--text);font-weight:500}
+.tl .now{color:var(--lime)}
+.tl .role-t{font-weight:800;font-size:16px;letter-spacing:.03em}
+.tl .org{color:var(--cyan)}
+.tl .ctx{color:var(--muted);font-size:13px;margin-top:4px}
+.tl ul{margin-top:8px;list-style:none;display:grid;gap:4px}
+.tl ul li{padding-left:18px;position:relative;font-size:13px}
+.tl ul li::before{content:"▸";position:absolute;left:0;color:var(--lime)}
+
+/* small lists (edu / certs / langs) */
+.items{list-style:none;display:grid;gap:14px}
+.items b{display:block;font-weight:700}
+.items span{color:var(--muted);font-size:12px}
+.items a:hover b{color:var(--lime)}
+.lvl{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.lvl em{font-style:normal;color:var(--lime);font-size:12px;letter-spacing:.15em}
 
 /* contracts */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
@@ -120,14 +143,6 @@ a{color:inherit;text-decoration:none}
 .more{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:.2em;color:var(--cyan)}
 .more:hover{text-decoration:underline}
 
-/* service record */
-.tl{list-style:none;display:grid;gap:14px}
-.tl li{display:grid;grid-template-columns:170px 1fr;gap:16px}
-.tl .when{color:var(--muted);font-size:12px}
-.tl .what b{color:var(--lime)}
-.tl ul{margin:6px 0 0 18px;color:var(--muted)}
-
-/* telemetry */
 .tele-img{display:block;width:100%;height:auto}
 
 footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 24px;
@@ -141,7 +156,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 }
 @media (max-width:600px){
   .wrap{padding:16px 16px 32px 24px}
-  .tl li{grid-template-columns:1fr;gap:2px}
+  .tl>li{grid-template-columns:1fr;gap:6px}
   .hud .opt{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -163,49 +178,63 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
       <div class="p-h"><span><span class="n">00</span> // IDENT</span><span>CLASS: BACKEND</span></div>
       <div class="hazard"></div>
       <div class="p-b">
-        <div><span class="tag"><span class="dot"></span>ONLINE // OPEN TO CONTRACTS</span></div>
+        <div><span class="tag" id="avail"><span class="dot"></span>ONLINE // OPEN TO CONTRACTS</span></div>
         <div>
-          <h1 class="glitch" data-t="M1RE">M1RE</h1>
-          <div class="name">VLADYSLAV KONOKH</div>
-          <div class="role">.NET Software Engineer <span>// backend · React front</span></div>
+          <h1 class="glitch" data-t="M1RE" id="handle">M1RE</h1>
+          <div class="name" id="name">Vladyslav Konokh</div>
+          <div class="role"><span id="title">.NET Software Engineer</span> <span>// <span id="loc">Kyiv, Ukraine</span></span></div>
         </div>
         <nav class="ctas" id="comms" aria-label="Contacts"></nav>
       </div>
     </section>
 
     <section class="p about" aria-labelledby="h-about">
-      <div class="p-h"><span id="h-about"><span class="n">01</span> // STATUS</span><span class="src" data-src>CACHED</span></div>
-      <div class="p-b"><dl class="kv" id="about"></dl></div>
+      <div class="p-h"><span id="h-about"><span class="n">01</span> // STATUS</span><span class="src" data-src>LOADING</span></div>
+      <div class="p-b"><dl class="kv" id="status"></dl></div>
     </section>
 
     <section class="p loadout" aria-labelledby="h-load">
       <div class="p-h"><span id="h-load"><span class="n">02</span> // LOADOUT</span><span id="stack-n"></span></div>
-      <div class="p-b">
-        <div class="chips" id="stack"></div>
-        <div class="legend" id="legend"></div>
-      </div>
+      <div class="p-b" id="stack"></div>
+    </section>
+
+    <section class="p record" aria-labelledby="h-rec" hidden>
+      <div class="p-h"><span id="h-rec"><span class="n">03</span> // SERVICE RECORD</span><span>EXPERIENCE</span></div>
+      <div class="p-b"><ol class="tl" id="record"></ol></div>
     </section>
 
     <section class="p contracts" aria-labelledby="h-con">
-      <div class="p-h"><span id="h-con"><span class="n">03</span> // CONTRACTS</span><span>REPOS</span></div>
+      <div class="p-h"><span id="h-con"><span class="n">04</span> // CONTRACTS</span><span>REPOS</span></div>
       <div class="p-b"><div class="cards" id="contracts"></div></div>
     </section>
 
     <section class="p log" aria-labelledby="h-log">
-      <div class="p-h"><span id="h-log"><span class="n">04</span> // FIELD LOG</span><span>VAULT</span></div>
+      <div class="p-h"><span id="h-log"><span class="n">05</span> // FIELD LOG</span><span>VAULT</span></div>
       <div class="p-b">
         <ul class="entries" id="log"></ul>
         <a class="more" href="https://m1re.github.io/EngineeringVault">OPEN ENGINEERING VAULT →</a>
       </div>
     </section>
 
-    <section class="p record" aria-labelledby="h-rec" id="record-panel" hidden>
-      <div class="p-h"><span id="h-rec"><span class="n">05</span> // SERVICE RECORD</span><span>EXPERIENCE</span></div>
-      <div class="p-b"><ol class="tl" id="record"></ol></div>
+    <div class="row3">
+    <section class="p third" aria-labelledby="h-edu" hidden>
+      <div class="p-h"><span id="h-edu"><span class="n">06</span> // TRAINING</span><span>EDUCATION</span></div>
+      <div class="p-b"><ul class="items" id="edu"></ul></div>
     </section>
 
+    <section class="p third" aria-labelledby="h-cert" hidden>
+      <div class="p-h"><span id="h-cert"><span class="n">07</span> // CLEARANCE</span><span>CERTS</span></div>
+      <div class="p-b"><ul class="items" id="certs"></ul></div>
+    </section>
+
+    <section class="p third" aria-labelledby="h-lang" hidden>
+      <div class="p-h"><span id="h-lang"><span class="n">08</span> // COMMS PROTOCOLS</span><span>LANGUAGES</span></div>
+      <div class="p-b"><ul class="items" id="langs"></ul></div>
+    </section>
+    </div>
+
     <section class="p telemetry" aria-labelledby="h-tel">
-      <div class="p-h"><span id="h-tel"><span class="n">06</span> // TELEMETRY</span><span>GITHUB // LIVE</span></div>
+      <div class="p-h"><span id="h-tel"><span class="n">09</span> // TELEMETRY</span><span>GITHUB // LIVE</span></div>
       <div class="p-b">
         <a href="https://github.com/M1re"><img class="tele-img" src="https://raw.githubusercontent.com/M1re/M1re/output/telemetry.svg" alt="GitHub telemetry: contributions, streaks, weekly activity, language mix" loading="lazy"></a>
       </div>
@@ -215,113 +244,90 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 
   <footer>
     <span>© <span id="yr"></span> M1RE // END OF TRANSMISSION</span>
-    <span>DATA: <span class="src" data-src>CACHED</span> ← GITHUB README</span>
+    <span>DATA: <span class="src" data-src>LOADING</span> ← PROFILE.YML</span>
   </footer>
 </div>
 
 <script>
 /* ============================================================
-   CONFIG — the only place to edit by hand.
-   Stack, status and field log are pulled live from the GitHub
-   profile README; FALLBACK is used only if GitHub is unreachable.
+   Profile data lives in profile.yml (edit that, not this file).
+   Field log and repo cards still come from the GitHub profile
+   README, which is generated by its own workflow.
    ============================================================ */
 const USER = 'M1re';
-
-// Fill in when ready; the SERVICE RECORD panel stays hidden while empty.
-const EXPERIENCE = [
-  // { when: '2024 — now', role: '.NET Engineer', org: 'Company', notes: ['What you shipped', 'Impact'] },
-];
-
-// Stack item → category (sets chip color). Unknown items fall into "other".
-const CATS = {
-  lang:  { label: 'Lang',      c: 'var(--lime)',   items: ['C#', 'TypeScript', 'JavaScript', 'PowerShell', 'SQL', 'Python', 'Go'] },
-  fw:    { label: 'Framework', c: 'var(--cyan)',   items: ['.NET', 'ASP.NET Core', 'React', 'EF Core', 'Next.js', 'Blazor'] },
-  data:  { label: 'Data',      c: 'var(--pink)',   items: ['MS SQL', 'MongoDB', 'Redis', 'PostgreSQL', 'Kafka', 'RabbitMQ', 'Elasticsearch'] },
-  ops:   { label: 'Ops',       c: 'var(--orange)', items: ['Docker', 'Kubernetes', 'Azure', 'AWS', 'GitHub Actions', 'Terraform'] },
-};
-const OTHER = { label: 'Other', c: 'var(--text)' };
-
-const FALLBACK = {
-  about: 'Status: building backend systems on .NET with a React front. Training: .NET, React, DevOps. Field notes in the Engineering Vault.',
-  stack: ['C#', '.NET', 'ASP.NET Core', 'React', 'TypeScript', 'MS SQL', 'MongoDB', 'Redis', 'Kafka', 'RabbitMQ', 'Docker', 'PowerShell'],
-  links: [
-    ['LINKEDIN', 'https://www.linkedin.com/in/vladyslav-konokh'],
-    ['MAIL', 'mailto:actuallydisrespectful@gmail.com'],
-    ['VAULT', 'https://m1re.github.io/EngineeringVault'],
-  ],
-  repos: ['EngineeringVault', 'HighPriority'],
-  log: [
-    ['2026-11-09', 'Idempotency', 'https://m1re.github.io/EngineeringVault/Architecture/Reliability/Idempotency'],
-    ['2026-11-09', 'const vs readonly', 'https://m1re.github.io/EngineeringVault/Programming/CSharp/Const-vs-Readonly'],
-    ['2026-11-09', 'Async/Await', 'https://m1re.github.io/EngineeringVault/Programming/Concurrency/Async-and-Await'],
-    ['2026-11-09', 'Concurrency vs Parallelism', 'https://m1re.github.io/EngineeringVault/Programming/Concurrency/Concurrency-vs-Parallelism'],
-    ['2026-11-09', 'Threads and the Thread Pool', 'https://m1re.github.io/EngineeringVault/Programming/Concurrency/Threads-and-the-Thread-Pool'],
-    ['2026-11-09', 'Value vs Reference Types', 'https://m1re.github.io/EngineeringVault/Programming/Runtime/Value-vs-Reference-Types'],
-  ],
-};
+const GROUP_COLORS = ['var(--lime)', 'var(--cyan)', 'var(--pink)', 'var(--orange)', 'var(--yellow)', 'var(--text)'];
 
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
-const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const safeUrl = u => /^(https?:|mailto:)/i.test(u) ? u : '#';
-const catOf = t => Object.values(CATS).find(c => c.items.some(i => i.toLowerCase() === t.toLowerCase())) || OTHER;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => /^(https?:|mailto:)/i.test(u || '') ? u : '#';
+const ok = v => v != null && v !== '' && !/TODO/.test(String(v));   // TODO entries stay hidden
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const ym = v => { const m = String(v).match(/^(\d{4})-(\d{2})/); return m ? `${MONTHS[+m[2] - 1]} ${m[1]}` : (/present/i.test(v) ? 'Present' : String(v)); };
+const show = (id, html) => { const el = $(id); el.innerHTML = html; el.closest('.p').hidden = !html; };
 
-/* ---------- parse README (it's mostly HTML) ---------- */
-function parseReadme(md) {
+/* ---------- profile.yml ---------- */
+function renderProfile(p) {
+  $('#handle').textContent = p.handle; $('#handle').dataset.t = p.handle;
+  $('#name').textContent = p.name;
+  $('#title').textContent = p.title;
+  $('#loc').textContent = p.location;
+  $('#avail').innerHTML = `<span class="dot"></span>${p.open_to_work ? 'ONLINE // OPEN TO CONTRACTS' : 'ONLINE'}`;
+
+  const c = p.contacts || {};
+  const links = [
+    ['GITHUB', c.github, 'var(--lime)'], ['LINKEDIN', c.linkedin, 'var(--lime)'],
+    ['MAIL', c.email && 'mailto:' + c.email, 'var(--pink)'], ['VAULT', c.vault, 'var(--cyan)'],
+  ].filter(l => ok(l[1]));
+  $('#comms').innerHTML =
+    `<a class="btn primary" href="resume.pdf" download="Vladyslav-Konokh-Resume.pdf"><i>↓</i>RÉSUMÉ PDF</a>` +
+    links.map(([n, h, col]) => `<a class="btn" style="--c:${col}" href="${esc(safeUrl(h))}"><i>▸</i>${n}</a>`).join('');
+
+  $('#status').innerHTML = Object.entries(p.status || {}).filter(([, v]) => ok(v))
+    .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
+
+  const groups = (p.skills || []).map((g, i) => ({ ...g, c: GROUP_COLORS[i % GROUP_COLORS.length], items: (g.items || []).filter(ok) }));
+  $('#stack').innerHTML = groups.map(g => `
+    <div class="sk-g" style="--c:${g.c}"><div class="sk-l">${esc(g.group)}</div>
+      <div class="chips">${g.items.map(t => `<span class="chip" style="--c:${g.c}">${esc(t)}</span>`).join('')}</div></div>`).join('');
+  $('#stack-n').textContent = `${groups.reduce((n, g) => n + g.items.length, 0)} ITEMS`;
+
+  show('#record', (p.experience || []).map(e => {
+    const now = /present/i.test(e.end);
+    const hl = (e.highlights || []).filter(ok);
+    return `<li>
+      <div class="when"><b>${ym(e.start)} — <span class="${now ? 'now' : ''}">${ym(e.end)}</span></b>${esc(e.location || '')}</div>
+      <div><div class="role-t">${esc(e.role)} <span class="org">// ${esc(e.company)}</span></div>
+        ${ok(e.context) ? `<div class="ctx">${esc(e.context)}</div>` : ''}
+        ${hl.length ? `<ul>${hl.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}</div></li>`;
+  }).join(''));
+
+  show('#edu', (p.education || []).map(e =>
+    `<li><b>${esc(e.degree)}</b><span>${esc(e.school)} · ${ym(e.start)} — ${ym(e.end)}</span></li>`).join(''));
+
+  show('#certs', (p.certifications || []).filter(x => ok(x.name)).map(x => {
+    const body = `<b>${esc(x.name)}</b><span>${esc(x.issuer)} · ${ym(x.date)}${x.url ? ' · VERIFY →' : ''}</span>`;
+    return `<li>${x.url ? `<a href="${esc(safeUrl(x.url))}">${body}</a>` : body}</li>`;
+  }).join(''));
+
+  show('#langs', (p.languages || []).filter(l => ok(l.name) && ok(l.level)).map(l =>
+    `<li class="lvl"><b>${esc(l.name)}</b><em>${esc(l.level)}</em></li>`).join(''));
+}
+
+/* ---------- README: field log + repo list ---------- */
+function renderReadme(md) {
   const doc = new DOMParser().parseFromString(md, 'text/html');
-  const alt = part => doc.querySelector(`img[src$="/${part}"]`)?.getAttribute('alt') || '';
-  const d = {};
-
-  const about = alt('about.svg');
-  if (about) d.about = about;
-
-  const stack = alt('loadout.svg').replace(/^stack:\s*/i, '');
-  if (stack) d.stack = stack.split(',').map(s => s.trim()).filter(Boolean);
-
-  const links = [...doc.querySelectorAll('p[align="center"]')[0]?.querySelectorAll('a') || []]
-    .map(a => [(a.querySelector('img')?.alt || '').toUpperCase().replace(/ENGINEERING /, ''), a.href])
-    .filter(([n, h]) => n && !/followers/i.test(h));
-  if (links.length) d.links = links;
-
-  const repos = [...doc.querySelectorAll('table a[href*="github.com/"]')]
-    .map(a => a.getAttribute('href').split('/').pop()).filter(Boolean);
-  if (repos.length) d.repos = repos;
-
   const log = [...doc.querySelectorAll('a')]
     .filter(a => /fieldlog-\d/.test(a.querySelector('img')?.getAttribute('src') || ''))
     .map(a => { const t = a.querySelector('img').alt; const m = t.match(/^(\d{4}-\d{2}-\d{2})\s+(.*)$/);
                 return m ? [m[1], m[2], a.getAttribute('href')] : ['', t, a.getAttribute('href')]; });
-  if (log.length) d.log = log;
-
-  return d;
-}
-
-/* ---------- render ---------- */
-function render(d) {
-  // about: "Key: value. Key: value. Free sentence." → key/value rows
-  $('#about').innerHTML = d.about.split(/\.\s+(?=[A-Z])/).map(s => s.replace(/\.$/, '')).map(s => {
-    const m = s.match(/^([\w ]{2,20}):\s*(.+)$/);
-    return m ? `<dt>${esc(m[1])}</dt><dd>${esc(m[2])}</dd>` : `<dt>Note</dt><dd>${esc(s)}</dd>`;
-  }).join('');
-
-  $('#stack').innerHTML = d.stack.map(t => `<span class="chip" style="--c:${catOf(t).c}">${esc(t)}</span>`).join('');
-  $('#stack-n').textContent = `${d.stack.length} ITEMS`;
-  const used = [...new Set(d.stack.map(catOf))];
-  $('#legend').innerHTML = used.map(c => `<span style="--c:${c.c}">${esc(c.label)}</span>`).join('');
-
-  const colors = { LINKEDIN: 'var(--lime)', MAIL: 'var(--pink)', VAULT: 'var(--cyan)' };
-  $('#comms').innerHTML =
-    `<a class="btn primary" href="https://github.com/${USER}"><i>▸</i>GITHUB</a>` +
-    d.links.map(([n, h]) => `<a class="btn" style="--c:${colors[n] || 'var(--orange)'}" href="${esc(safeUrl(h))}"><i>▸</i>${esc(n)}</a>`).join('');
-
-  $('#log').innerHTML = d.log.map(([dt, t, h]) =>
-    `<li><a href="${esc(safeUrl(h))}"><time>${esc(dt)}</time><span>${esc(t)}</span><span class="arr">→</span></a></li>`).join('');
-
-  renderContracts(d.repos.map(name => ({ name })));
+  show('#log', log.map(([dt, t, h]) =>
+    `<li><a href="${esc(safeUrl(h))}"><time>${esc(dt)}</time><span>${esc(t)}</span><span class="arr">→</span></a></li>`).join(''));
+  return [...doc.querySelectorAll('table a[href*="github.com/"]')].map(a => a.getAttribute('href').split('/').pop()).filter(Boolean);
 }
 
 function renderContracts(repos) {
-  $('#contracts').innerHTML = repos.map((r, i) => `
+  show('#contracts', repos.map((r, i) => `
     <a class="card" href="https://github.com/${USER}/${esc(r.name)}">
       <div class="card-h"><span>CONTRACT // 0x${String(i + 1).padStart(2, '0')}</span><span>${r.archived ? 'CLOSED' : 'ACTIVE'}</span></div>
       <div class="card-b">
@@ -329,37 +335,31 @@ function renderContracts(repos) {
         <div class="card-d">${esc(r.description || '—')}</div>
         <div class="card-m">${r.language ? `<span><b>${esc(r.language)}</b></span>` : ''}${r.stargazers_count != null ? `<span>★ ${r.stargazers_count}</span>` : ''}${r.pushed_at ? `<span>UPD ${r.pushed_at.slice(0, 10)}</span>` : ''}</div>
       </div>
-    </a>`).join('');
+    </a>`).join(''));
 }
 
-function renderRecord() {
-  if (!EXPERIENCE.length) return;
-  $('#record-panel').hidden = false;
-  $('#record').innerHTML = EXPERIENCE.map(e => `
-    <li><div class="when">${esc(e.when)}</div>
-      <div class="what"><b>${esc(e.role)}</b> // ${esc(e.org)}${e.notes?.length ? `<ul>${e.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}</div></li>`).join('');
-}
-
-/* ---------- live data ---------- */
-async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw r.status; return r.json(); }
+/* ---------- boot ---------- */
+const text = u => fetch(u, { cache: 'no-cache' }).then(r => r.ok ? r.text() : Promise.reject(r.status));
 
 async function boot() {
-  render(FALLBACK);
-  renderRecord();
-
-  let data = FALLBACK;
   try {
-    const md = await fetch(`https://raw.githubusercontent.com/${USER}/${USER}/main/README.md`, { cache: 'no-cache' }).then(r => r.ok ? r.text() : Promise.reject(r.status));
-    data = { ...FALLBACK, ...parseReadme(md) };
-    render(data);
+    renderProfile(jsyaml.load(await text('profile.yml')));
     document.querySelectorAll('[data-src]').forEach(e => { e.textContent = 'LIVE'; e.classList.add('live'); });
-  } catch (e) { /* keep fallback */ }
+  } catch (e) {
+    document.querySelectorAll('[data-src]').forEach(e => { e.textContent = 'OFFLINE'; });
+    console.error('profile.yml', e);
+  }
+
+  let repoNames = ['EngineeringVault', 'HighPriority'];
+  try { const r = renderReadme(await text(`https://raw.githubusercontent.com/${USER}/${USER}/main/README.md`)); if (r.length) repoNames = r; }
+  catch (e) { /* README unreachable: field log stays hidden */ }
+  renderContracts(repoNames.map(name => ({ name })));
 
   try {
-    const repos = await getJSON(`https://api.github.com/users/${USER}/repos?per_page=100`);
+    const repos = await fetch(`https://api.github.com/users/${USER}/repos?per_page=100`).then(r => r.ok ? r.json() : Promise.reject(r.status));
     const byName = Object.fromEntries(repos.map(r => [r.name.toLowerCase(), r]));
-    renderContracts(data.repos.map(n => byName[n.toLowerCase()] || { name: n }));
-  } catch (e) { /* rate-limited or offline: cards stay basic */ }
+    renderContracts(repoNames.map(n => byName[n.toLowerCase()] || { name: n }));
+  } catch (e) { /* rate-limited: cards stay basic */ }
 }
 
 /* ---------- clock (Kyiv) ---------- */

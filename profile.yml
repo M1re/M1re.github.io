@@ -1,0 +1,120 @@
+# ============================================================
+#  Single source of truth: the site (index.html) and the PDF
+#  resume (resume.typ) both read this file.
+#  Everything here is PUBLIC, including git history. No phone,
+#  no home address.
+#
+#  Lines marked TODO are hidden on the site and in the resume
+#  until you fill them in.
+# ============================================================
+
+name: Vladyslav Konokh
+handle: M1RE
+title: .NET Software Engineer
+location: Kyiv, Ukraine
+open_to_work: true
+
+contacts:
+  email: actuallydisrespectful@gmail.com
+  linkedin: https://www.linkedin.com/in/vladyslav-konokh
+  github: https://github.com/M1re
+  site: https://m1re.github.io
+  vault: https://m1re.github.io/EngineeringVault
+
+# Short status lines for the site's STATUS panel.
+status:
+  Status: Building backend systems on .NET with a React front
+  Training: .NET, React, DevOps
+  Notes: Field notes in the Engineering Vault
+
+# Resume summary. 3-4 sentences, keyword-rich, no fluff.
+summary: >-
+  .NET Software Engineer with 5+ years of commercial experience designing and
+  building enterprise microservices in C#, ASP.NET Core and React. Delivered
+  production systems in identity and access management, digital workplace and
+  laboratory automation domains, owning features end to end: API design,
+  data modelling in MS SQL and MongoDB, integrations with Azure, AWS, Okta and
+  Keycloak, CI/CD and production support. Focused on clean architecture,
+  performance and reliability, currently deepening DevOps expertise.
+
+# Skills: each group gets its own color on the site and its own
+# line in the resume. Use the spelling recruiters search for.
+skills:
+  - group: Languages
+    items: [C#, TypeScript, JavaScript, SQL, PowerShell]
+  - group: Backend
+    items: [.NET, ASP.NET Core, ASP.NET Web API, REST APIs, Microservices, CQRS, MediatR]
+  - group: Frontend
+    items: [React, HTML, CSS]
+  - group: Data & Messaging
+    items: [MS SQL, MongoDB, Redis, Kafka, RabbitMQ]
+  - group: Cloud & DevOps
+    items: [Azure, AWS, GCP, Docker, GitHub Actions, GitLab CI/CD, Azure Bicep]
+  - group: Security & Testing
+    items: [Okta, Keycloak, OAuth 2.0, Unit Testing, Integration Testing]
+
+experience:
+  - role: .NET Software Engineer
+    company: DataArt
+    location: Remote, Kyiv
+    start: 2025-01
+    end: present
+    context: >-
+      Secure, scalable platforms for biological sample storage, logistics,
+      genomic services, lab robotics and AI-driven analysis.
+    highlights:
+      - Architect and build microservice applications in C# and .NET Core.
+      - "TODO: paste the rest of the DataArt responsibilities from LinkedIn"
+      - "TODO: add 1-2 results with numbers (latency, throughput, users, cost)"
+
+  - role: .NET Software Engineer
+    company: GlobalLogic
+    location: Remote, Kyiv
+    start: 2023-08
+    end: 2025-01
+    context: >-
+      Digital workplace platform for internal communication, collaboration
+      and knowledge sharing.
+    highlights:
+      - Architected and built C#/.NET Core microservices and RESTful APIs with authentication and authorization.
+      - Designed NoSQL data models and established communication protocols between microservices.
+      - Applied performance optimization techniques and profiling tools to improve system efficiency.
+      - Integrated third-party services, SDKs and APIs into the platform.
+      - Streamlined deployments with DevOps through GitHub CI/CD pipelines and Azure Bicep.
+      - "TODO: add 1-2 results with numbers"
+
+  - role: Junior .NET Software Engineer
+    company: GlobalLogic
+    location: Remote, Kyiv
+    start: 2021-06
+    end: 2023-05
+    context: >-
+      Enterprise Identity and Access Management (IAM) platform automating user
+      provisioning, deprovisioning, access control and security analytics.
+    highlights:
+      - Designed and developed microservices with C#/.NET, TypeScript and React.
+      - Built scalable RESTful APIs with authentication and authorization; implemented inter-service communication.
+      - Designed relational (MS SQL) and NoSQL (MongoDB) databases based on project needs.
+      - Integrated AWS, Azure, Okta and Keycloak into the IAM workflows.
+      - Implemented CI/CD pipelines with GitLab CI/CD, Docker and GCP together with DevOps.
+      - Developed responsive React user interfaces and wrote unit and integration tests.
+
+education:
+  - degree: Bachelor of Science in Computer Software Engineering
+    school: State University of Telecommunications
+    location: Kyiv, Ukraine
+    start: 2019-09
+    end: 2023-09
+
+certifications:
+  - name: Claude Code 101
+    issuer: Claude Academy (Anthropic)
+    date: 2026-11
+    url: https://academy.claude.com/verify/15c49b1ffe6a7bab153b95004acd9860
+
+# Use CEFR levels (A1-C2) or Native.
+languages:
+  - name: English
+    level: "TODO"
+  - name: Ukrainian
+    level: "TODO"
