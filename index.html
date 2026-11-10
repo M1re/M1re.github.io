@@ -244,7 +244,9 @@ function renderProfile(p) {
   $('#status').innerHTML = Object.entries(p.status || {}).filter(([, v]) => ok(v))
     .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
 
-  const groups = (p.skills || []).map((g, i) => ({ ...g, c: GROUP_COLORS[i % GROUP_COLORS.length], items: (g.items || []).filter(ok) }));
+  // The site shows the short `core` list; the full `items` list is for the resume.
+  const groups = (p.skills || []).map(g => ({ ...g, items: (g.core || []).filter(ok) })).filter(g => g.items.length)
+    .map((g, i) => ({ ...g, c: GROUP_COLORS[i % GROUP_COLORS.length] }));
   $('#stack').innerHTML = groups.map(g => `
     <div class="sk-g" style="--c:${g.c}"><div class="sk-l">${esc(g.group)}</div>
       <div class="chips">${g.items.map(t => `<span class="chip" style="--c:${g.c}">${esc(t)}</span>`).join('')}</div></div>`).join('');
