@@ -39,7 +39,7 @@ summary: >-
 # line in the resume. Use the spelling recruiters search for.
 skills:
   - group: Languages
-    items: [C#, Python, SQL, T-SQL, PowerShell]
+    items: [C#, Python, C++, SQL, T-SQL, PowerShell]
   - group: Backend & Identity
     items: [.NET 10, .NET 8, .NET 6, ASP.NET Core, ASP.NET Web API, Entity Framework Core, LINQ, async/await, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
   - group: Frontend
