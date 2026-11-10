@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>M1RE — Vladyslav Konokh</title>
+<title>Vladyslav Konokh — .NET Software Engineer</title>
 <meta name="description" content="Vladyslav Konokh — .NET Software Engineer. Backend on .NET, front on React.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,9 +54,8 @@ a{color:inherit;text-decoration:none}
   border-right:2px solid var(--lime);border-bottom:2px solid var(--lime)}
 
 .id{grid-column:span 7;grid-row:span 2;display:flex;flex-direction:column}
-.about,.loadout,.log{grid-column:span 5}
-.contracts{grid-column:span 7}
-.record,.telemetry{grid-column:span 12}
+.about,.loadout{grid-column:span 5}
+.record,.log,.telemetry{grid-column:span 12}
 .row3{grid-column:span 12;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 
 /* identity */
@@ -67,14 +66,13 @@ a{color:inherit;text-decoration:none}
 .dot{width:8px;height:8px;background:var(--lime);animation:blink 1.1s steps(2,start) infinite}
 @keyframes blink{to{visibility:hidden}}
 .glitch{position:relative;display:inline-block;font-weight:800;line-height:.9;
-  font-size:clamp(64px,11vw,148px);letter-spacing:-.02em;color:var(--text)}
+  font-size:clamp(44px,7.4vw,100px);letter-spacing:-.02em;color:var(--text);text-transform:uppercase}
 .glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;opacity:0}
 .glitch::before{color:var(--pink);animation:g1 3.2s steps(1) infinite}
 .glitch::after{color:var(--cyan);animation:g2 3.2s steps(1) infinite}
 @keyframes g1{0%,86%,100%{opacity:0;transform:none}87%{opacity:.9;transform:translate(-7px,2px)}90%{opacity:.9;transform:translate(5px,-3px)}93%{opacity:.9;transform:translate(-3px,0)}96%{opacity:0}}
 @keyframes g2{0%,86%,100%{opacity:0;transform:none}88%{opacity:.9;transform:translate(6px,-2px)}91%{opacity:.9;transform:translate(-5px,3px)}94%{opacity:.9;transform:translate(4px,1px)}97%{opacity:0}}
-.name{font-size:clamp(18px,2.2vw,26px);font-weight:700;letter-spacing:.06em;margin-top:14px;text-transform:uppercase}
-.role{color:var(--lime);letter-spacing:.2em;font-size:13px;text-transform:uppercase;margin-top:4px}
+.role{color:var(--lime);letter-spacing:.2em;font-size:13px;text-transform:uppercase;margin-top:18px}
 .role span{color:var(--muted)}
 .ctas{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--line);
@@ -120,17 +118,6 @@ a{color:inherit;text-decoration:none}
 .lvl{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
 .lvl em{font-style:normal;color:var(--lime);font-size:12px;letter-spacing:.15em}
 
-/* contracts */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.card{border:1px solid var(--line);display:flex;flex-direction:column;transition:.15s}
-.card-h{background:var(--lime);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.25em;padding:6px 12px;display:flex;justify-content:space-between}
-.card-b{padding:14px 12px;display:flex;flex-direction:column;gap:10px;flex:1}
-.card-t{font-weight:800;font-size:18px;letter-spacing:.04em;text-transform:uppercase}
-.card-d{color:var(--muted);font-size:13px;flex:1}
-.card-m{display:flex;gap:14px;font-size:11px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
-.card-m b{color:var(--cyan);font-weight:500}
-.card:hover,.card:focus-visible{border-color:var(--lime);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--lime);outline:none}
-
 /* field log */
 .entries{list-style:none}
 .entries a{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:baseline;
@@ -151,7 +138,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 .src.live{color:var(--lime)}
 
 @media (max-width:1000px){
-  .id,.about,.loadout,.contracts,.log{grid-column:span 12}
+  .id,.about,.loadout{grid-column:span 12}
   .id{grid-row:auto}
 }
 @media (max-width:600px){
@@ -169,7 +156,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 
   <header class="hud">
     <span>SECTOR 04 // <b>KYIV-UA</b> <span class="opt">// 50.4501N 30.5234E</span></span>
-    <span><span class="opt">RUNNER-ID: M1RE-2020-0917 // </span>LOCAL <b id="clock">--:--:--</b></span>
+    <span>LOCAL <b id="clock">--:--:--</b></span>
   </header>
 
   <main class="grid">
@@ -180,8 +167,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
       <div class="p-b">
         <div><span class="tag" id="avail"><span class="dot"></span>ONLINE // OPEN TO CONTRACTS</span></div>
         <div>
-          <h1 class="glitch" data-t="M1RE" id="handle">M1RE</h1>
-          <div class="name" id="name">Vladyslav Konokh</div>
+          <h1 class="glitch" data-t="Vladyslav Konokh" id="name">Vladyslav Konokh</h1>
           <div class="role"><span id="title">.NET Software Engineer</span> <span>// <span id="loc">Kyiv, Ukraine</span></span></div>
         </div>
         <nav class="ctas" id="comms" aria-label="Contacts"></nav>
@@ -203,13 +189,8 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
       <div class="p-b"><ol class="tl" id="record"></ol></div>
     </section>
 
-    <section class="p contracts" aria-labelledby="h-con">
-      <div class="p-h"><span id="h-con"><span class="n">04</span> // CONTRACTS</span><span>REPOS</span></div>
-      <div class="p-b"><div class="cards" id="contracts"></div></div>
-    </section>
-
     <section class="p log" aria-labelledby="h-log">
-      <div class="p-h"><span id="h-log"><span class="n">05</span> // FIELD LOG</span><span>VAULT</span></div>
+      <div class="p-h"><span id="h-log"><span class="n">04</span> // FIELD LOG</span><span>VAULT</span></div>
       <div class="p-b">
         <ul class="entries" id="log"></ul>
         <a class="more" href="https://m1re.github.io/EngineeringVault">OPEN ENGINEERING VAULT →</a>
@@ -218,23 +199,23 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 
     <div class="row3">
     <section class="p third" aria-labelledby="h-edu" hidden>
-      <div class="p-h"><span id="h-edu"><span class="n">06</span> // TRAINING</span><span>EDUCATION</span></div>
+      <div class="p-h"><span id="h-edu"><span class="n">05</span> // TRAINING</span><span>EDUCATION</span></div>
       <div class="p-b"><ul class="items" id="edu"></ul></div>
     </section>
 
     <section class="p third" aria-labelledby="h-cert" hidden>
-      <div class="p-h"><span id="h-cert"><span class="n">07</span> // CLEARANCE</span><span>CERTS</span></div>
+      <div class="p-h"><span id="h-cert"><span class="n">06</span> // CLEARANCE</span><span>CERTS</span></div>
       <div class="p-b"><ul class="items" id="certs"></ul></div>
     </section>
 
     <section class="p third" aria-labelledby="h-lang" hidden>
-      <div class="p-h"><span id="h-lang"><span class="n">08</span> // COMMS PROTOCOLS</span><span>LANGUAGES</span></div>
+      <div class="p-h"><span id="h-lang"><span class="n">07</span> // COMMS PROTOCOLS</span><span>LANGUAGES</span></div>
       <div class="p-b"><ul class="items" id="langs"></ul></div>
     </section>
     </div>
 
     <section class="p telemetry" aria-labelledby="h-tel">
-      <div class="p-h"><span id="h-tel"><span class="n">09</span> // TELEMETRY</span><span>GITHUB // LIVE</span></div>
+      <div class="p-h"><span id="h-tel"><span class="n">08</span> // TELEMETRY</span><span>GITHUB // LIVE</span></div>
       <div class="p-b">
         <a href="https://github.com/M1re"><img class="tele-img" src="https://raw.githubusercontent.com/M1re/M1re/output/telemetry.svg" alt="GitHub telemetry: contributions, streaks, weekly activity, language mix" loading="lazy"></a>
       </div>
@@ -243,7 +224,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
   </main>
 
   <footer>
-    <span>© <span id="yr"></span> M1RE // END OF TRANSMISSION</span>
+    <span>© <span id="yr"></span> VLADYSLAV KONOKH // END OF TRANSMISSION</span>
     <span>DATA: <span class="src" data-src>LOADING</span> ← PROFILE.YML</span>
   </footer>
 </div>
@@ -251,8 +232,8 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
 <script>
 /* ============================================================
    Profile data lives in profile.yml (edit that, not this file).
-   Field log and repo cards still come from the GitHub profile
-   README, which is generated by its own workflow.
+   The field log still comes from the GitHub profile README,
+   which is generated by its own workflow.
    ============================================================ */
 const USER = 'M1re';
 const GROUP_COLORS = ['var(--lime)', 'var(--cyan)', 'var(--pink)', 'var(--orange)', 'var(--yellow)', 'var(--text)'];
@@ -268,15 +249,15 @@ const show = (id, html) => { const el = $(id); el.innerHTML = html; el.closest('
 
 /* ---------- profile.yml ---------- */
 function renderProfile(p) {
-  $('#handle').textContent = p.handle; $('#handle').dataset.t = p.handle;
-  $('#name').textContent = p.name;
+  $('#name').textContent = p.name; $('#name').dataset.t = p.name;
   $('#title').textContent = p.title;
   $('#loc').textContent = p.location;
   $('#avail').innerHTML = `<span class="dot"></span>${p.open_to_work ? 'ONLINE // OPEN TO CONTRACTS' : 'ONLINE'}`;
 
   const c = p.contacts || {};
   const links = [
-    ['GITHUB', c.github, 'var(--lime)'], ['LINKEDIN', c.linkedin, 'var(--lime)'],
+    ['LINKEDIN', c.linkedin, 'var(--lime)'], ['TELEGRAM', c.telegram, 'var(--cyan)'],
+    ['GITHUB', c.github, 'var(--orange)'],
     ['MAIL', c.email && 'mailto:' + c.email, 'var(--pink)'], ['VAULT', c.vault, 'var(--cyan)'],
   ].filter(l => ok(l[1]));
   $('#comms').innerHTML =
@@ -314,7 +295,7 @@ function renderProfile(p) {
     `<li class="lvl"><b>${esc(l.name)}</b><em>${esc(l.level)}</em></li>`).join(''));
 }
 
-/* ---------- README: field log + repo list ---------- */
+/* ---------- README: field log ---------- */
 function renderReadme(md) {
   const doc = new DOMParser().parseFromString(md, 'text/html');
   const log = [...doc.querySelectorAll('a')]
@@ -323,19 +304,6 @@ function renderReadme(md) {
                 return m ? [m[1], m[2], a.getAttribute('href')] : ['', t, a.getAttribute('href')]; });
   show('#log', log.map(([dt, t, h]) =>
     `<li><a href="${esc(safeUrl(h))}"><time>${esc(dt)}</time><span>${esc(t)}</span><span class="arr">→</span></a></li>`).join(''));
-  return [...doc.querySelectorAll('table a[href*="github.com/"]')].map(a => a.getAttribute('href').split('/').pop()).filter(Boolean);
-}
-
-function renderContracts(repos) {
-  show('#contracts', repos.map((r, i) => `
-    <a class="card" href="https://github.com/${USER}/${esc(r.name)}">
-      <div class="card-h"><span>CONTRACT // 0x${String(i + 1).padStart(2, '0')}</span><span>${r.archived ? 'CLOSED' : 'ACTIVE'}</span></div>
-      <div class="card-b">
-        <div class="card-t">${esc(r.name.replace(/([a-z])([A-Z])/g, '$1 $2'))}</div>
-        <div class="card-d">${esc(r.description || '—')}</div>
-        <div class="card-m">${r.language ? `<span><b>${esc(r.language)}</b></span>` : ''}${r.stargazers_count != null ? `<span>★ ${r.stargazers_count}</span>` : ''}${r.pushed_at ? `<span>UPD ${r.pushed_at.slice(0, 10)}</span>` : ''}</div>
-      </div>
-    </a>`).join(''));
 }
 
 /* ---------- boot ---------- */
@@ -350,16 +318,8 @@ async function boot() {
     console.error('profile.yml', e);
   }
 
-  let repoNames = ['EngineeringVault', 'HighPriority'];
-  try { const r = renderReadme(await text(`https://raw.githubusercontent.com/${USER}/${USER}/main/README.md`)); if (r.length) repoNames = r; }
+  try { renderReadme(await text(`https://raw.githubusercontent.com/${USER}/${USER}/main/README.md`)); }
   catch (e) { /* README unreachable: field log stays hidden */ }
-  renderContracts(repoNames.map(name => ({ name })));
-
-  try {
-    const repos = await fetch(`https://api.github.com/users/${USER}/repos?per_page=100`).then(r => r.ok ? r.json() : Promise.reject(r.status));
-    const byName = Object.fromEntries(repos.map(r => [r.name.toLowerCase(), r]));
-    renderContracts(repoNames.map(n => byName[n.toLowerCase()] || { name: n }));
-  } catch (e) { /* rate-limited: cards stay basic */ }
 }
 
 /* ---------- clock (Kyiv) ---------- */

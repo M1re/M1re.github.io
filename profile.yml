@@ -9,7 +9,6 @@
 # ============================================================
 
 name: Vladyslav Konokh
-handle: M1RE
 title: .NET Software Engineer
 location: Kyiv, Ukraine
 open_to_work: true
@@ -17,6 +16,7 @@ open_to_work: true
 contacts:
   email: actuallydisrespectful@gmail.com
   linkedin: https://www.linkedin.com/in/vladyslav-konokh
+  telegram: https://t.me/DisrespectfulOne
   github: https://github.com/M1re
   site: https://m1re.github.io
   vault: https://m1re.github.io/EngineeringVault
@@ -115,6 +115,12 @@ certifications:
 # Use CEFR levels (A1-C2) or Native.
 languages:
   - name: English
-    level: "TODO"
+    level: C1
   - name: Ukrainian
-    level: "TODO"
+    level: C1
+  - name: Russian
+    level: C1
+  - name: German
+    level: A2
+  - name: Polish
+    level: A2

@@ -31,7 +31,7 @@
 #set text(font: "Poppins", size: 9.5pt, fill: ink, ligatures: false, hyphenate: false, lang: "en")
 #set par(justify: true, leading: 0.55em, spacing: 0.7em)
 #set list(indent: 0.6em, body-indent: 0.5em, spacing: 0.42em, marker: [•])
-#show link: it => it
+#show list: set par(justify: false)
 
 // ---------- building blocks ----------
 #let section(title) = {
@@ -54,7 +54,7 @@
     let c = p.contacts
     let items = (p.location,)
     if ok(c.at("email", default: none)) { items.push(link("mailto:" + c.email, c.email)) }
-    for key in ("linkedin", "github", "site") {
+    for key in ("linkedin", "telegram", "github", "site") {
       let u = c.at(key, default: none)
       if ok(u) { items.push(link(u, strip-url(u))) }
     }
