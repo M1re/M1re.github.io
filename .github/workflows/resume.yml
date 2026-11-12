@@ -34,8 +34,10 @@ jobs:
         run: |
           sudo apt-get install -y -qq poppler-utils > /dev/null
           pdftotext resume.pdf resume.txt
+          # A skill may wrap onto the next line, so search a copy with line breaks folded into spaces.
+          tr -s '[:space:]' ' ' < resume.txt > flat.txt
           fail=0
-          check() { grep -qF -- "$1" resume.txt || { echo "::error::missing in PDF text: $1"; fail=1; }; }
+          check() { grep -qF -- "$1" flat.txt || { echo "::error::missing in PDF text: $1"; fail=1; }; }
           check "$(yq -r .name profile.yml)"
           for h in "Summary" "Experience" "Education" "Skills"; do check "$h"; done
           while IFS= read -r skill; do check "$skill"; done < <(yq -r '.skills[].items[] | select(test("TODO") | not)' profile.yml)
