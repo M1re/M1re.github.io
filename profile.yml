@@ -42,10 +42,10 @@ summary: >-
 # a group without `core` is hidden there.
 skills:
   - group: Languages
-    items: [C#, Python, C++, SQL, T-SQL, PowerShell]
+    items: [C#, Python, C++, SQL, PowerShell]
     core: [C#, Python, C++, SQL, PowerShell]
   - group: Backend & Identity
-    items: [.NET 10, .NET 8, .NET 6, ASP.NET Core, ASP.NET Web API, Entity Framework Core, LINQ, async/await, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
+    items: [.NET 10, .NET 8, .NET 6, ASP.NET Core, ASP.NET Web API, Entity Framework Core, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
     core: [.NET, ASP.NET Core, Entity Framework Core, REST APIs, Microservices, CQRS, xUnit, Keycloak, Okta, OAuth 2.0]
   - group: Frontend
     items: [React, Angular]
