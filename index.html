@@ -269,7 +269,7 @@ function renderProfile(p) {
   }).join(''));
 
   show('#edu', (p.education || []).map(e =>
-    `<li><b>${esc(e.degree)}</b><span>${esc(e.school)} · ${ym(e.start)} — ${ym(e.end)}</span></li>`).join(''));
+    `<li><b>${esc(e.degree)}</b><span>${esc(e.school)}${ok(e.location) ? ', ' + esc(e.location) : ''} · ${ym(e.start)} — ${ym(e.end)}</span></li>`).join(''));
 
   show('#certs', (p.certifications || []).filter(x => ok(x.name)).map(x => {
     const body = `<b>${esc(x.name)}</b><span>${esc(x.issuer)} · ${ym(x.date)}${x.url ? ' · VERIFY →' : ''}</span>`;
