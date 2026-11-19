@@ -37,8 +37,8 @@
 )
 #set page(paper: "a4", margin: (x: 15mm, y: 14mm))
 #set text(font: "Lato", size: 10.2pt, fill: ink, ligatures: false, hyphenate: false, lang: "en")
-#set par(justify: false, leading: 0.5em, spacing: 0.5em)
-#set list(indent: 0pt, body-indent: 0.5em, spacing: 0.4em, marker: [•])
+#set par(justify: false, leading: 0.62em, spacing: 0.62em)
+#set list(indent: 0pt, body-indent: 0.5em, spacing: 0.55em, marker: [•])
 
 // ---------- building blocks ----------
 // Sticky: a heading always moves to the next page together with its first line.
@@ -49,13 +49,13 @@
 
 // ---------- header (left-aligned) ----------
 #text(size: 21pt, weight: "bold", tracking: 0.2pt, p.name)
-#v(-2pt)
+#v(2pt)
 #text(size: 12pt, p.title)
 #if ok(p.at("headline", default: none)) [
-  #v(-3pt)
+  #v(1pt)
   #text(size: 9.6pt, fill: muted, p.headline)
 ]
-#v(1pt)
+#v(4pt)
 #{
   let c = p.contacts
   let items = (p.location,)
@@ -80,22 +80,23 @@
 #section[Skills]
 #for g in p.skills {
   let items = g.items.filter(ok)
-  if items.len() > 0 { block(above: 3pt, below: 3pt)[*#g.group:* #items.join(", ")] }
+  // Gap between groups is larger than the line spacing, so wrapped lines stay visibly inside their group.
+  if items.len() > 0 { block(above: 9pt, below: 9pt)[*#g.group:* #items.join(", ")] }
 }
 
 // ---------- experience ----------
 #section[Experience]
 #for (i, e) in p.experience.enumerate() {
-  if i > 0 { v(9pt) }
+  if i > 0 { v(11pt) }
   // The job header is sticky, so it never stays alone at the bottom of a page.
-  block(breakable: false, sticky: true, below: 3pt, {
+  block(breakable: false, sticky: true, below: 5pt, {
     row([*#e.role*, #e.company], dates(e.start, e.end) + if ok(e.at("location", default: none)) { " · " + e.location } else { "" })
     if ok(e.at("context", default: none)) {
-      v(1pt)
+      v(3pt)
       text(style: "italic", fill: muted, e.context)
     }
     if ok(e.at("stack", default: none)) {
-      v(1pt)
+      v(3pt)
       text(size: 9.2pt, fill: muted, "Stack: " + e.stack)
     }
   })
