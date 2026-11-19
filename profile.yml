@@ -79,7 +79,7 @@ experience:
     stack: .NET, Apache Solr, MS SQL Server, Azure, GitHub Actions, Datadog, Claude Code
     highlights:
       - Developed an AI-assisted validation workflow on Claude Code that compares migrated Solr indexes and search results with production and traces each real mismatch to its cause in code.
-      - Migrated 70% of the platform's search indexes from Solr 6 to Solr 9, updating schemas, field types and the .NET client.
+      - Migrated 70% of the platform's search indexes from Solr 6 to 9, updating schemas, field types and the .NET client.
       - Reworked data loading in the indexing pipeline using SQL execution plans and parallel loading, reducing average rebuild time from 60 to 15–25 minutes.
       - Moved index-build logic from five legacy projects into a shared config-driven .NET framework, making new indexes faster to add and failures easier to trace.
       - Set up GitHub Actions pipelines for index builds with post-build reports and per-index Datadog dashboards.
@@ -92,7 +92,7 @@ experience:
     end: 2026-01
     context: >-
       Automated biorepository: robotic sample handling, camera-based label recognition and a lab CMS.
-    stack: .NET, ML.NET, ONNX, YOLO, Python, RabbitMQ, C++, AWS EKS, Kubernetes, Helm, GitLab CI
+    stack: .NET, ML.NET, ONNX, YOLO, Python, RabbitMQ, C++, Amazon EKS, Kubernetes, Helm, GitLab CI
     highlights:
       - Led the migration of 8–9 services from Docker Swarm to Kubernetes on AWS EKS, with Helm charts, health probes, autoscaling and GitLab CI pipelines.
       - Tracked down an unmanaged memory leak in an ML.NET image-processing service that crashed containers, saving $700 per month per environment.
@@ -136,9 +136,9 @@ experience:
       - Mentored two interns through code reviews and day-to-day tasks.
 
 education:
-  - degree: Bachelor of Science in Computer Software Engineering
+  - degree: BSc in Computer Software Engineering
     school: State University of Telecommunications
-    location: Kyiv, Ukraine
+    location: Kyiv
     start: 2019-09
     end: 2023-09
 

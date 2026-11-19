@@ -36,8 +36,9 @@
   keywords: p.skills.map(g => g.items).flatten(),
 )
 #set page(paper: "a4", margin: (x: 15mm, y: 14mm))
-#set text(font: "Lato", size: 10.2pt, fill: ink, ligatures: false, hyphenate: false, lang: "en")
-#set par(justify: false, leading: 0.62em, spacing: 0.62em)
+// High runt cost + optimized line breaking: avoids a single word alone on the last line of a bullet.
+#set text(font: "Lato", size: 10.2pt, fill: ink, ligatures: false, hyphenate: false, lang: "en", costs: (runt: 1000%))
+#set par(justify: false, linebreaks: "optimized", leading: 0.62em, spacing: 0.62em)
 #set list(indent: 0pt, body-indent: 0.5em, spacing: 0.55em, marker: [•])
 
 // ---------- building blocks ----------
@@ -62,7 +63,7 @@
   let phone = private.at("phone", default: none)
   if ok(phone) { items.push(box(link("tel:" + str(phone).replace(" ", ""), str(phone)))) }
   if ok(c.at("email", default: none)) { items.push(box(link("mailto:" + c.email, c.email))) }
-  for key in ("linkedin", "telegram", "github", "site") {
+  for key in ("linkedin", "telegram", "github") {
     let u = c.at(key, default: none)
     // box keeps each contact on one line instead of splitting it at "/"
     if ok(u) { items.push(box(link(u, strip-url(u)))) }
