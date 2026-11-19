@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vladyslav Konokh — .NET Software Engineer</title>
-<meta name="description" content="Vladyslav Konokh — .NET Software Engineer. Backend systems on .NET, Azure and AWS.">
+<title>Vladyslav Konokh — Senior .NET Engineer</title>
+<meta name="description" content="Vladyslav Konokh — Senior .NET Engineer. Backend and microservices on .NET, Azure and AWS, AI agents and ML.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -106,6 +106,9 @@ a{color:inherit;text-decoration:none}
 .tl .role-t{font-weight:800;font-size:16px;letter-spacing:.03em}
 .tl .org{color:var(--cyan)}
 .tl .ctx{color:var(--muted);font-size:13px;margin-top:4px}
+.tl .stk{color:var(--muted);font-size:12px;margin-top:4px}
+.tl .stk b{color:var(--lime);font-weight:500;letter-spacing:.1em}
+.headline{color:var(--muted);font-size:12px;letter-spacing:.08em;margin-top:6px}
 .tl ul{margin-top:8px;list-style:none;display:grid;gap:4px}
 .tl ul li{padding-left:18px;position:relative;font-size:13px}
 .tl ul li::before{content:"▸";position:absolute;left:0;color:var(--lime)}
@@ -157,6 +160,7 @@ footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display
         <div>
           <h1 class="glitch" data-t="Vladyslav Konokh" id="name">Vladyslav Konokh</h1>
           <div class="role"><span id="title">.NET Software Engineer</span> <span>// <span id="loc">Kyiv, Ukraine</span></span></div>
+          <div class="headline" id="headline" hidden></div>
         </div>
         <nav class="ctas" id="comms" aria-label="Contacts"></nav>
       </div>
@@ -228,6 +232,7 @@ const show = (id, html) => { const el = $(id); el.innerHTML = html; el.closest('
 function renderProfile(p) {
   $('#name').textContent = p.name; $('#name').dataset.t = p.name;
   $('#title').textContent = p.title;
+  if (ok(p.headline)) { $('#headline').textContent = p.headline; $('#headline').hidden = false; }
   $('#loc').textContent = p.location;
   $('#avail').innerHTML = `<span class="dot"></span>${p.open_to_work ? 'ONLINE // OPEN TO CONTRACTS' : 'ONLINE'}`;
 
@@ -259,6 +264,7 @@ function renderProfile(p) {
       <div class="when"><b>${ym(e.start)} — <span class="${now ? 'now' : ''}">${ym(e.end)}</span></b>${esc(e.location || '')}</div>
       <div><div class="role-t">${esc(e.role)} <span class="org">// ${esc(e.company)}</span></div>
         ${ok(e.context) ? `<div class="ctx">${esc(e.context)}</div>` : ''}
+        ${ok(e.stack) ? `<div class="stk"><b>STACK</b> ${esc(e.stack)}</div>` : ''}
         ${hl.length ? `<ul>${hl.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}</div></li>`;
   }).join(''));
 

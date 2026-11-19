@@ -1,6 +1,6 @@
 # ============================================================
-#  Single source of truth: the site (index.html) and the PDF
-#  resume (resume.typ) both read this file.
+#  Single source of truth: the site (index.html), the PDF resume
+#  (resume.typ) and the GitHub profile README all read this file.
 #  Everything here is PUBLIC, including git history. No phone,
 #  no home address.
 #
@@ -9,14 +9,16 @@
 # ============================================================
 
 name: Vladyslav Konokh
-title: .NET Software Engineer
-location: Wrocław, Poland
+title: Senior .NET Engineer
+# One line under the name and title (resume header, site).
+headline: 5 years · Backend & Microservices · Azure / AWS · AI agents & ML
+location: Poland
 open_to_work: true
 
 contacts:
-  email: actuallydisrespectful@gmail.com
+  email: vladyslav.knkh@icloud.com
   linkedin: https://www.linkedin.com/in/vladyslav-konokh
-  telegram: https://t.me/DisrespectfulOne
+  telegram: https://t.me/vladyslav_kn
   github: https://github.com/M1re
   site: https://m1re.github.io
   vault: https://m1re.github.io/EngineeringVault
@@ -24,16 +26,14 @@ contacts:
 # Short status lines for the site's STATUS panel.
 status:
   Status: Building backend systems on .NET
-  Training: .NET, Kubernetes, DevOps
+  Training: .NET, Kubernetes, AI agents
   Notes: Field notes in the Engineering Vault
 
-# Resume summary. 3-4 sentences, keyword-rich, no fluff.
+# Summary. A blank line starts a new paragraph.
 summary: >-
-  .NET Software Engineer with 5 years of commercial experience as a backend C#
-  developer, building systems and microservices with ASP.NET Core. Experienced with relational
-  and NoSQL databases, cloud infrastructure on Azure and AWS, and CI/CD with
-  Docker and Kubernetes. Comfortable owning a component end to end, working
-  directly with stakeholders and helping teammates get up to speed.
+  Backend .NET engineer with five years of experience building microservices and data-heavy systems on Azure and AWS for security, digital workplace, life sciences and travel products.
+  Experienced in working closely with stakeholders and cross-functional teams, leading migrations and stepping in as interim team lead.
+  Hands-on with AI in everyday engineering, from LLM agents for data validation to computer-vision models in .NET.
 
 # Skills: each group gets its own color on the site and its own
 # line in the resume. Use the spelling recruiters search for.
@@ -42,27 +42,31 @@ summary: >-
 # a group without `core` is hidden there.
 skills:
   - group: Languages
-    items: [C#, Python, C++, SQL, PowerShell]
-    core: [C#, Python, C++, SQL, PowerShell]
-  - group: Backend & Identity
-    items: [.NET 10, .NET 8, .NET 6, ASP.NET Core, ASP.NET Web API, Entity Framework Core, REST APIs, Microservices, CQRS, MediatR, xUnit, Unit Testing, Keycloak, Okta, OAuth 2.0]
-    core: [.NET, ASP.NET Core, Entity Framework Core, REST APIs, Microservices, CQRS, xUnit, Keycloak, Okta, OAuth 2.0]
-  - group: Frontend
-    items: [React, Angular]
-    core: [React, Angular]
+    items: [C#, Python, SQL, TypeScript]
+    core: [C#, Python, SQL, TypeScript]
+  - group: Backend
+    items: [.NET, ASP.NET Core, Entity Framework Core, REST APIs, Microservices, Event-Driven Architecture, CQRS, MediatR, DDD, Clean Architecture, xUnit, Unit Testing]
+    core: [.NET, ASP.NET Core, Entity Framework Core, REST APIs, Microservices, Event-Driven Architecture, CQRS, DDD, xUnit]
   - group: Data & Messaging
     items: [MS SQL Server, MongoDB, Azure Cosmos DB, Apache Solr, Azure Service Bus, RabbitMQ]
     core: [MS SQL Server, MongoDB, Azure Cosmos DB, Apache Solr, Azure Service Bus, RabbitMQ]
   - group: Cloud & DevOps
-    items: [Azure, Azure Functions, Azure Key Vault, Azure Bicep, AWS, Amazon EKS, Amazon ECR, GCP, Docker, Kubernetes, Helm, Docker Swarm, Git, GitHub Actions, Azure DevOps]
-    core: [Azure, AWS, GCP, Docker, Docker Swarm, Kubernetes, Helm, Git, GitHub Actions]
+    items: [Azure, Azure Functions, Azure Key Vault, Azure Bicep, AWS, Amazon EKS, Amazon ECR, GCP, Docker, Kubernetes, Helm, Git, GitHub Actions, GitLab CI, Azure DevOps]
+    core: [Azure, AWS, Docker, Kubernetes, Helm, GitHub Actions, GitLab CI]
+  - group: AI / ML
+    items: [Claude Code, GitHub Copilot, LLM agents, MCP, ML.NET, ONNX, YOLO, ComfyUI]
+    core: [LLM agents, Claude Code, MCP, ML.NET, ONNX, YOLO]
   - group: Observability
     items: [Datadog, Grafana, Kibana]
     core: [Datadog, Grafana, Kibana]
-  - group: ML & Vision
-    items: [ML.NET, ONNX, VoTT, ComfyUI]
-    core: [ML.NET, ONNX, VoTT, ComfyUI]
+  - group: Identity
+    items: [Keycloak, Okta, OAuth 2.0]
+    core: [Keycloak, Okta, OAuth 2.0]
+  - group: Frontend
+    items: [Angular, React]
+    core: [Angular, React]
 
+# One entry per project. `stack` is optional and shows under the context line.
 # Dates are approximate (no bench between projects); keep LinkedIn in sync.
 experience:
   - role: .NET Software Engineer
@@ -72,13 +76,14 @@ experience:
     end: present
     context: >-
       Travel platform: search and data-indexing services on Apache Solr and MS SQL Server.
+    stack: .NET, Apache Solr, MS SQL Server, Azure, GitHub Actions, Datadog, Claude Code
     highlights:
-      - Completed an in-house .NET indexing framework and moved index-build logic from 5 legacy projects into it.
-      - Migrated all search indexes from Apache Solr 6 to Solr 9.
-      - Made indexing 2.5x faster on average by optimizing API data loading and SQL queries.
-      - Contributed to index-rebuild jobs and per-index Datadog dashboards.
-      - Validated migrated indexes against production with automated AI-driven parity reports.
-      - Go-to engineer for the indexing platform, responsible for onboarding new team members.
+      - Developed an AI-assisted validation workflow on Claude Code that compares migrated Solr indexes and search results with production and traces each real mismatch to its cause in code.
+      - Migrated 70% of the platform's search indexes from Solr 6 to Solr 9, updating schemas, field types and the .NET client.
+      - Reworked data loading in the indexing pipeline using SQL execution plans and parallel loading, reducing average rebuild time from 60 to 15–25 minutes.
+      - Moved index-build logic from five legacy projects into a shared config-driven .NET framework, making new indexes faster to add and failures easier to trace.
+      - Set up GitHub Actions pipelines for index builds with post-build reports and per-index Datadog dashboards.
+      - Onboarded four engineers onto the indexing platform and became the team's main point of contact for it.
 
   - role: .NET Software Engineer
     company: DataArt
@@ -87,16 +92,15 @@ experience:
     end: 2026-01
     context: >-
       Automated biorepository: robotic sample handling, camera-based label recognition and a lab CMS.
+    stack: .NET, ML.NET, ONNX, YOLO, Python, RabbitMQ, C++, AWS EKS, Kubernetes, Helm, GitLab CI
     highlights:
-      - Fixed memory leaks in ML.NET services, cutting infrastructure costs by ~$700/month per environment.
-      - Trained object-detection models to locate client-specific QR codes and sample labels on tube images.
-      - Automated model training from image sets labeled in VoTT.
-      - Built a ComfyUI workflow that generates synthetic training images, replacing manual photo shoots.
-      - Owned the migration of a project's container infrastructure from Docker Swarm to Kubernetes on AWS, including Helm-based deployment packaging.
-      - Built a monitoring service that brings Grafana and Kibana data into the lab CMS.
-      - Calibrated camera and robotic-arm parameters, including focus, sharpness and grayscale conversion, to improve label recognition accuracy.
-      - Developed Angular front-end features for the lab CMS.
-      - Wrote code in .NET, Python and C++ together with CMS, robotics and vision teams.
+      - Led the migration of 8–9 services from Docker Swarm to Kubernetes on AWS EKS, with Helm charts, health probes, autoscaling and GitLab CI pipelines.
+      - Tracked down an unmanaged memory leak in an ML.NET image-processing service that crashed containers, saving $700 per month per environment.
+      - Fine-tuned and benchmarked open-source YOLO models for QR-code and label detection, then integrated the selected model into .NET services via ONNX.
+      - Rewrote the C# post-processing for model output, fixing shifted and duplicated detections.
+      - Improved QR decoding in a C++ ZXing module connected to .NET over RabbitMQ through image preprocessing and camera tuning.
+      - Built a ComfyUI pipeline that generates synthetic training images, replacing manual test-data preparation.
+      - Built a service that brings Grafana and Kibana data into the lab CMS, and delivered Angular features for it.
 
   - role: .NET Software Engineer
     company: GlobalLogic
@@ -105,13 +109,14 @@ experience:
     end: 2024-11
     context: >-
       Digital workplace platform combining project management and social collaboration.
+    stack: .NET, CQRS/MediatR, DDD, Azure Cosmos DB, Azure Service Bus, Azure Functions, Bicep
     highlights:
-      - Led the service migrating user data from platform v1 to v2, including planning, task distribution and stakeholder demos.
-      - Extended core microservices built with CQRS, MediatR, Azure Cosmos DB, Azure Service Bus and Azure Functions.
-      - Covered migration-critical services with xUnit unit tests to keep releases stable.
-      - Helped build the central monitoring service that sends logs and traces to Datadog.
-      - Drove technical decisions through evidence-based design reviews.
-      - Delivered infrastructure as code with Azure Bicep and CI/CD with GitHub Actions.
+      - Led design and development of the service migrating all user data from platform v1 to v2 in a team of six.
+      - "Acted as interim team lead: planned and broke down tasks, ran demos for managers and stakeholders, and coordinated the work of other engineers."
+      - Built the migration on Azure Service Bus with idempotent processing, retries and per-user status tracking, so runs could be safely repeated.
+      - Developed features in CQRS/MediatR microservices on Cosmos DB, Service Bus and Azure Functions.
+      - Added xUnit tests for migration-critical services to keep releases stable.
+      - Maintained infrastructure as code in Azure Bicep and CI/CD pipelines in GitHub Actions.
 
   - role: .NET Software Engineer
     company: GlobalLogic
@@ -120,15 +125,15 @@ experience:
     end: 2023-09
     context: >-
       Security platform unifying RBAC and access-control tools for AWS and Azure.
+    stack: .NET, Clean Architecture, EF Core, MS SQL Server, MongoDB, AWS, Azure, Keycloak, Okta, React
     highlights:
-      - Designed the platform's data model from scratch.
-      - Proposed and carried out the move from MS SQL to MongoDB to support a rapidly evolving schema.
-      - Built a monitoring and risk-management service that detects suspicious activity with configurable rules.
-      - Reduced a service's memory usage from ~5 GB to ~1.3 GB (~74%).
-      - Owned CI/CD pipelines and deployments for the team's microservices.
+      - Designed the platform's data model and moved the MVP from MS SQL to MongoDB, so new policy and event types shipped without schema migrations.
+      - Took over the rule-based risk monitoring service after its MVP, fixed its defects and completed detection of suspicious activity in AWS, Azure and Okta logs.
+      - Reduced the service's memory from 5 GB to 1.3 GB with time-window batching and lighter event models.
       - Integrated Keycloak and Okta for authentication and authorization.
-      - Developed React front-end features for the platform.
-      - Mentored two interns, guiding them through code reviews and day-to-day tasks.
+      - Owned CI/CD pipelines and deployments for the team's microservices.
+      - Delivered React features for the platform's UI.
+      - Mentored two interns through code reviews and day-to-day tasks.
 
 education:
   - degree: Bachelor of Science in Computer Software Engineering
@@ -148,10 +153,8 @@ languages:
   - name: English
     level: C1
   - name: Ukrainian
-    level: C1
+    level: Native
   - name: Russian
-    level: C1
-  - name: German
-    level: A2
+    level: Native
   - name: Polish
-    level: A1
+    level: A2

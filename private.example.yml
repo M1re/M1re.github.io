@@ -1,0 +1,4 @@
+# Copy to private.yml (git-ignored) and fill in. Never commit the real file.
+# Private build:
+#   typst compile --font-path fonts --ignore-system-fonts --input private=private.yml resume.typ cv-private.pdf
+phone: "+48 000 000 000"
